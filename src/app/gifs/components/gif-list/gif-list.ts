@@ -17,8 +17,4 @@ export class GifList {
 
   gifs = input.required<GifI[]>();
 
-  constructor() {
-    console.log(this.gifs);
-  }
-
 }

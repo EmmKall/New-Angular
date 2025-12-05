@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { GifsS } from '../../../services/gifs-s';
+import { CommonModule } from '@angular/common';
 
 interface MenuOptions {
   label:    string;
@@ -11,6 +13,7 @@ interface MenuOptions {
 @Component({
   selector: 'app-gifs-side-menu-options',
   imports: [
+    CommonModule,
     RouterLink,
     RouterLinkActive,
   ],
@@ -18,6 +21,8 @@ interface MenuOptions {
   styleUrl: './gifs-side-menu-options.css',
 })
 export class GifsSideMenuOptions {
+
+  gifsS: GifsS= inject(GifsS);
 
   menuOptions: MenuOptions[] = [
     {
