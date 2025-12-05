@@ -33,7 +33,9 @@ export default class Trending implements AfterViewInit {
     const scrollDiv = this.scrollDivRef()?.nativeElement;
     if(!scrollDiv) return;
 
-    scrollDiv.scrollTop = this.gifsSState.trendingScrollState().treading;
+    //scrollDiv.scrollTop = this.gifsSState.trendingScrollState().treading;
+    scrollDiv.scrollTop = this.gifsSState.pagesScrollState['trending'];
+    //console.log(this.gifsSState.pagesScrollState['trending']);
   }
 
 
@@ -47,9 +49,15 @@ export default class Trending implements AfterViewInit {
 
     const isAtBottom = scrollTop + clientHeight >= scrollHeight + 300;
 
-    const scrollState = this.gifsSState.trendingScrollState();
+    /* Signals */
+    /* const scrollState = this.gifsSState.trendingScrollState();
     scrollState.treading = scrollTop;
-    this.gifsSState.trendingScrollState.set(scrollState);
+    this.gifsSState.trendingScrollState.set(scrollState); */
+
+    /* Record */
+    let pagesScorll = this.gifsSState.pagesScrollState;
+    pagesScorll['trending'] = scrollTop;
+    this.gifsSState.pagesScrollState = pagesScorll;
 
     if( isAtBottom ) {
       this.gifsS.loadTrendingGifs();
