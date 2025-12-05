@@ -55,9 +55,9 @@ export default class Trending implements AfterViewInit {
     this.gifsSState.trendingScrollState.set(scrollState); */
 
     /* Record */
-    let pagesScorll = this.gifsSState.pagesScrollState;
-    pagesScorll['trending'] = scrollTop;
-    this.gifsSState.pagesScrollState = pagesScorll;
+    let pagesScroll = this.gifsSState.pagesScrollState;
+    pagesScroll['trending'] = scrollTop;
+    this.gifsSState.pagesScrollState = pagesScroll;
 
     if( isAtBottom ) {
       this.gifsS.loadTrendingGifs();
