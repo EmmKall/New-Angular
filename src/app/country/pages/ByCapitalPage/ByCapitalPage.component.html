@@ -1,0 +1,14 @@
+<div class="">
+
+  <app-SearchComponent
+    (updatTermE)="onSearch($event)"
+    placeholder="Search by Capital"
+  />
+
+  <app-TableComponent
+    [data]="data()"
+  />
+
+</div>
+
+

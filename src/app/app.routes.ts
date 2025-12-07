@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { App } from './app';
+import { HomePageComponent } from './country/pages/HomePage/HomePage.component';
 
 export const routes: Routes = [
   /* {
@@ -13,6 +14,10 @@ export const routes: Routes = [
       },
     ]
   }, */
-  { path: '', component: App, pathMatch: 'full' },
-  { path: '**', redirectTo: '/', pathMatch: 'full' },
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  {
+    path: 'country',
+    loadChildren: () => import('./country/country.routes'),
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

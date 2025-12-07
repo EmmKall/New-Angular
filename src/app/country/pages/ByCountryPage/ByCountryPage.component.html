@@ -1,0 +1,14 @@
+<div class="">
+
+  <app-SearchComponent
+    (updatTermE)="onSearch($event)"
+    placeholder="Search by Country"
+  />
+
+  <app-TableComponent
+    [data]="data()"
+  />
+
+</div>
+
+

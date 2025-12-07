@@ -5,7 +5,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@environments/*": ["src/environments/*"]
+      "@environments/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/app/components/*"],
+      "@country/": ["src/app/country/"],
     },
     "strict": true,
     "noImplicitOverride": true,
