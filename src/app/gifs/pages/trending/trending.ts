@@ -27,14 +27,14 @@ export default class Trending implements AfterViewInit {
 
   constructor() {
     this.gifsS.loadTrendingGifs();
-  }
+      }
 
   ngAfterViewInit(): void {
     const scrollDiv = this.scrollDivRef()?.nativeElement;
     if(!scrollDiv) return;
 
     //scrollDiv.scrollTop = this.gifsSState.trendingScrollState().treading;
-    scrollDiv.scrollTop = this.gifsSState.pagesScrollState['trending'];
+    scrollDiv.scrollTop = this.gifsSState.pagesScrollState['trending'] ?? this.gifsSState.getPageScrollState('treading');
     //console.log(this.gifsSState.pagesScrollState['trending']);
   }
 
@@ -58,6 +58,8 @@ export default class Trending implements AfterViewInit {
     let pagesScroll = this.gifsSState.pagesScrollState;
     pagesScroll['trending'] = scrollTop;
     this.gifsSState.pagesScrollState = pagesScroll;
+    console.log(pagesScroll);
+    this.gifsSState.updatePagesScrolState( 'treading', scrollTop );
 
     if( isAtBottom ) {
       this.gifsS.loadTrendingGifs();

@@ -11,4 +11,12 @@ export class GifsSState {
   /* Record */
   pagesScrollState: Record<string, number> = {};
 
+  updatePagesScrolState(page: string, value: number): void {
+    this.pagesScrollState[page] = value;
+  }
+
+  getPageScrollState(page: string): number {
+    return this.pagesScrollState[page] ?? 0;
+  }
+
 }
