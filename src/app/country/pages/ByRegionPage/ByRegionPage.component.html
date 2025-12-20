@@ -1,9 +1,17 @@
 <div class="">
 
-  <app-SearchComponent
+  <!-- <app-SearchComponent
     (updatTermE)="onSearch($event)"
     placeholder="Search by Region"
-  />
+  /> -->
+
+  <div class="btn-content flex flex-col md:flex-row justify-around gap-1">
+
+    @for(region of regions; track region){
+      <button (click)="onSearch(region)" class="btn btn-info">{{region}}</button>
+    }
+
+  </div>
 
   <app-TableComponent
     [data]="data()"

@@ -13,6 +13,10 @@ export class CountrySService {
 
   private _http: HttpClient = inject(HttpClient);
   private url: string = `${environment.apiCountryUrl}`;
+  private queryCacheCapital = new Map<string, CountryI[]>();
+  private queryCacheCountry = new Map<string, CountryI[]>();
+  private queryCacheRegion = new Map<string, CountryI[]>();
+
 
   isLoading = signal<boolean>(false);
   isError   = signal<string|null>(null);
@@ -44,12 +48,19 @@ export class CountrySService {
   public getCountryByCapital(query: string = ''): void {
     if( this.isLoading() ) return;
 
+    if(this.queryCacheCapital.has(query)) {
+      const data = this.queryCacheCapital.get(query);
+      if(data) {
+        this.countries.set(data);
+        return;
+      }
+    }
+
     const queryLowerCase: string = query.toLowerCase().trim();
     const url = `${this.url}capital/${queryLowerCase}`;
 
     this.isLoading.set(true);
     this.isError.set(null);
-
     this._http.get<CountryServiceI[]>(url)
     /* .pipe(
       delay(3000)
@@ -60,6 +71,7 @@ export class CountrySService {
         const data = CountryMapper.mapCountryItemsArray(res);
         this.countries.set(data);
         this.isLoading.set(false);
+        this.queryCacheCapital.set(query, data);
       },
       error: (err) => {
         this.isError.set(err.message);
@@ -73,6 +85,14 @@ export class CountrySService {
   public getCountryByCountry(query: string = ''): void {
     if( this.isLoading() ) return;
 
+    if(this.queryCacheCountry.has(query)) {
+      const data = this.queryCacheCountry.get(query);
+      if(data) {
+        this.countries.set(data);
+        return;
+      }
+    }
+
     const queryLowerCase: string = query.toLowerCase().trim();
     const url = `${this.url}region/${queryLowerCase}`;
 
@@ -86,6 +106,7 @@ export class CountrySService {
         const data = CountryMapper.mapCountryItemsArray(res);
         this.countries.set(data);
         this.isLoading.set(false);
+        this.queryCacheCountry.set(query, data);
       },
       error: (err) => {
         this.isError.set(err.message);
@@ -99,6 +120,15 @@ export class CountrySService {
     public getCountryByRegion(query: string = ''): void {
     if( this.isLoading() ) return;
 
+    if(this.queryCacheRegion.has(query)) {
+      const data = this.queryCacheRegion.get(query);
+      if(data) {
+        this.countries.set(data);
+        return;
+      }
+    }
+
+
     const queryLowerCase: string = query.toLowerCase().trim();
     const url = `${this.url}region/${queryLowerCase}`;
 
@@ -112,6 +142,7 @@ export class CountrySService {
         const data = CountryMapper.mapCountryItemsArray(res);
         this.countries.set(data);
         this.isLoading.set(false);
+        this.queryCacheRegion.set(query, data);
       },
       error: (err) => {
         this.isError.set(err.message);

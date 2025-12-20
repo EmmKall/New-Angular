@@ -1,4 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CountryI } from '@app/country/interfaces/CountryI';
 import { CountrySService } from '@app/country/services/CountryS.service';
 import { SearchComponentComponent } from "@app/country/shared/components/SearchComponent/SearchComponent.component";
@@ -16,7 +17,14 @@ export class ByCountryPageComponent implements OnInit {
 
   data = computed<CountryI[]>(this.countrySService.countries);
 
-  constructor() { }
+  activatedRoute:ActivatedRoute = inject(ActivatedRoute);
+
+  constructor() {
+    const queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
+    if(queryParam.trim().length > 0) {
+      this.onSearch(queryParam);
+    }
+  }
 
   ngOnInit() {
   }
