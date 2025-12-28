@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 import { App } from './app';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 
 export const routes: Routes = [
   /* {
@@ -13,6 +16,8 @@ export const routes: Routes = [
       },
     ]
   }, */
-  { path: '', component: App, pathMatch: 'full' },
+  { path: '', component: HomePageComponent, pathMatch: 'full' },
+  { path: 'about', component: AboutPageComponent, pathMatch: 'full' },
+  { path: 'contact', component: ContactPageComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

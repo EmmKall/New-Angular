@@ -1,0 +1,18 @@
+<div class="">
+  <p>home-page works!</p>
+
+  <h3>Traditional: <span>{{ tradicionalPorperty }}</span></h3>
+  <h3>Signal: <span>{{ signalProperty() }}</span></h3>
+
+
+  <div class="flex mt-5">
+    <button (click)="changeTradicionalProperty()" class="p-1 rounded text-white bg-blue-500 mx-2 cursor-pointer">Change traditional</button>
+    <button (click)="changeSignalProperty()" class="p-1 rounded text-white bg-green-500 mx-2 cursor-pointer">Change signal</button>
+  </div>
+
+  <div class="flex flex-col mt-5">
+    <app-Title [title]="'Title Component using Traditional Property: ' + tradicionalPorperty"></app-Title>
+    <app-Title [title]="'Title Component using Signal Property: ' + signalProperty()"></app-Title>
+  </div>
+
+</div>

@@ -1,0 +1,13 @@
+<ul class="flex space-x-4 p-4 bg-blue-600 text-white">
+  @for(route of routes; track route.path) {
+   <li>
+      <a
+        class="font-bold"
+        routerLinkActive="text-blue-100 underline"
+        [routerLink]="route.path"
+      >
+        {{ route.label }}
+      </a>
+    </li>
+  }
+</ul>
