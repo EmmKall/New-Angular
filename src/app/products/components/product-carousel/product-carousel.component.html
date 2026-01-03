@@ -1,0 +1,31 @@
+<!-- Slider main container -->
+<!-- <div class="swiper" #productSwiper>
+  <div class="swiper-wrapper">
+
+    @for(image of images(); track image){
+      <div class="swiper-slide">
+        <img [src]="image || '' | productImage" [alt]="title()" />
+      </div>
+    }
+    <div class="swiper-slide">Slide 2</div>
+    <div class="swiper-slide">Slide 3</div>
+    ...
+  </div>
+  <div class="swiper-pagination"></div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <div class="swiper-scrollbar"></div>
+</div> -->
+
+<div class="carousel rounded-box w-full">
+  @for(image of images(); track image){
+    <div class="carousel-item w-1/2">
+      <img
+        [src]="image | productImage"
+        [alt]="title()"
+        class="w-full" />
+    </div>
+  }
+</div>

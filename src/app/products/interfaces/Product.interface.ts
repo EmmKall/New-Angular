@@ -1,0 +1,45 @@
+import { UserI } from "@auth/interfaces/UserResponseI";
+
+export interface ProductResponseI {
+  count:    number;
+  pages:    number;
+  products: ProductI[];
+}
+
+export interface ProductI {
+  id:          string;
+  title:       string;
+  price:       number;
+  description: string;
+  slug:        string;
+  stock:       number;
+  sizes:       Size[];
+  gender:      Gender;
+  tags:        Tag[];
+  images:      string[];
+  user?:        UserI;
+}
+
+export enum Gender {
+  Kid = "kid",
+  Men = "men",
+  Unisex = "unisex",
+  Women = "women",
+}
+
+export enum Size {
+  L = "L",
+  M = "M",
+  S = "S",
+  Xl = "XL",
+  Xs = "XS",
+  Xxl = "XXL",
+}
+
+export enum Tag {
+  Hats = "hats",
+  Hoodie = "hoodie",
+  Jacket = "jacket",
+  Shirt = "shirt",
+  Sweatshirt = "sweatshirt",
+}

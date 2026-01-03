@@ -13,6 +13,9 @@ export const routes: Routes = [
       },
     ]
   }, */
-  { path: '', component: App, pathMatch: 'full' },
+  {
+    path: '',
+    loadChildren: () => import('./store-front/store-front.routing')
+  },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

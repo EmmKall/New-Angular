@@ -6,4 +6,6 @@ export const environment = {
 
   apiUrlGiphy: 'https://api.giphy.com/v1',
   apiKeyGiphy: 'OYcGuQmYwDfQEUFUenw3d2JJ5ZH1ZHW6',
+
+  apiTeloShop: 'http://localhost:3000/api/',
 };

@@ -1,0 +1,19 @@
+<div class="card bg-base-100 shadow-sm">
+  <figure class="px-10 pt-10">
+    <img
+      [src]="productData().images | productImage"
+      [alt]="productData().title"
+      class="rounded-xl" />
+  </figure>
+  <div class="card-body items-center text-center">
+    <h2 class="card-title text-accent text-xl cursor-pointer" [routerLink]="['/product', productData().id]">{{productData().title}}</h2>
+    <p>{{productData().description | slice:0:30}}</p>
+    <p>Gender: <b>{{productData().gender}}</b></p>
+    <p>Size: <b>{{productData().sizes.join(', ')}}</b></p>
+    <p>Price: <b>{{productData().price | currency}}</b></p>
+    <p>Stock: <b>{{productData().stock}}</b></p>
+    <div class="card-actions">
+      <button class="btn btn-primary" [routerLink]="['/product', productData().id]" >View more</button>
+    </div>
+  </div>
+</div>

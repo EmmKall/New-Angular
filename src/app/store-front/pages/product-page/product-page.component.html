@@ -1,0 +1,22 @@
+<div class="w-full h-full">
+
+  <div class="hero bg-base-200">
+    <div class="hero-content flex-col lg:flex-row">
+      <img [src]="product?.images ?? '' | productImage" alt="" class="max-w-sm rounded-lg shadow-2xl" />
+      <div>
+        <h1 class="text-5xl font-bold text-accent">{{product?.title}}</h1>
+        <p class="py-6">{{product?.description}}</p>
+        <p>Gender: <b>{{product!.gender}}</b></p>
+        <p>Size: <b>{{product!.sizes.join(', ')}}</b></p>
+        <p>Price: <b>{{product!.price | currency}}</b></p>
+        <p>Stock: <b>{{product!.stock}}</b></p>
+        <button class="btn btn-primary">Buy now</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="carousel-product">
+    <app-product-carousel [images]="product?.images ?? []" [title]="product?.title ?? ''"></app-product-carousel>
+  </div>
+
+</div>

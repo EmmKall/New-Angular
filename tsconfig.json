@@ -5,7 +5,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@environments/*": ["src/environments/*"]
+      "@environments/*": ["src/environments/*"],
+      "@products/*": ["src/app/products/*"],
+      "@auth/*": ["src/app/auth/*"],
+      "@store/*": ["src/app/store-front/*"],
+      "@dashboard/*": ["src/app/admin-dashboard/*"]
     },
     "strict": true,
     "noImplicitOverride": true,
