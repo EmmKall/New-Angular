@@ -1,0 +1,33 @@
+<div class="mx-auto flex justify-center items-center my-5">
+  <div class="join">
+
+    <button
+        [disabled]="this.activePage() === 1"
+        (click)="nextBeforePage(false)"
+        class="join-item btn hover:btn-primary btn-xl"
+        >
+      {{'<'}}
+    </button>
+
+    @for(page of pages(); track page){
+      <button
+        class="join-item btn hover:btn-primary btn-xl"
+        [class.btn-primary]="page === activePage()"
+        [routerLink]="[]"
+        [queryParams]="{page: page}"
+        (click)="updateCurrentPage(page)"
+        >
+      {{page}}
+      </button>
+    }
+
+    <button
+        [disabled]="this.activePage() === (this.totalPage() )"
+        (click)="nextBeforePage(true)"
+        class="join-item btn hover:btn-primary btn-xl"
+        >
+      {{'>'}}
+    </button>
+
+  </div>
+</div>

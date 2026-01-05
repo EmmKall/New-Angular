@@ -4,10 +4,16 @@
   <h2 class="text-xl">For every taste</h2>
   <div class="divider mb-5"></div>
 
+  <div class="p-2 mx-auto">
+    <app-pagination-content [totalPage]="totalPages" />
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
     @for(product of products; track product.id){
       <app-product-card
+        (updateCurrentPageE)="updateOffsetProducts($event)"
         [productData]="product"
+        [ariaCurrent]="(this.optionsProducts.offset + 1)"
       ></app-product-card>
     }
   </div>

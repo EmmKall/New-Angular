@@ -1,9 +1,9 @@
-import { JsonPipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductCardComponent } from "@products/components/product-card/product-card.component";
 import { ProductI, ProductResponseI } from '@products/interfaces/Product.interface';
 import { optionsProductsI, ProductsService } from '@products/services/Products.service';
+import { PaginationContentComponent } from '@shared/components/pagination-content/pagination-content.component';
 
 @Component({
   selector: 'app-home-page',
@@ -12,6 +12,7 @@ import { optionsProductsI, ProductsService } from '@products/services/Products.s
   imports: [
     /* JsonPipe, */
     ProductCardComponent,
+    PaginationContentComponent,
   ]
 })
 export class HomePageComponent implements OnInit {
@@ -21,16 +22,19 @@ export class HomePageComponent implements OnInit {
   productsData  = this.productsService.productsData;
 
   optionsProducts: optionsProductsI = {
-    limit: 10,
+    limit:  10,
     offset: 0,
-    gender: ''
+    gender: '',
   };
 
   /* productsResource = rxResource<ProductResponseI[], {}>({
     params: () => ({}),
     stream: ({ params }) => this.productsService.getProducts()
   }); */
+
   products: ProductI[] = [];
+  totalPages: number = 0;
+
   constructor() {
     this.productsData.set([]);
   }
@@ -42,11 +46,18 @@ export class HomePageComponent implements OnInit {
   getProducts(): void {
     this.productsData.set([]);
     this.products = [];
+    console.log( (this.optionsProducts.offset + 1) );
     this.productsService.getProducts(this.optionsProducts).subscribe(resp => {
-      this.products = resp;
-      //this.productsData.update(resp => [...resp, ...resp]);
+      const {pages, products} = resp;
+      this.totalPages = pages;
+      this.products = products;
+      this.productsData.update(data => [...data, ...products]);
     });
   }
 
+  updateOffsetProducts(offset: any): void {
+    this.optionsProducts.offset = (offset * this.optionsProducts.limit);
+    this.getProducts();
+  }
 
 }

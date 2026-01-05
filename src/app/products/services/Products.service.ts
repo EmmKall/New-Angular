@@ -22,7 +22,7 @@ export class ProductsService {
 
   constructor() { }
 
-  getProducts(options: optionsProductsI): Observable<ProductI[]>{
+  getProducts(options: optionsProductsI): Observable<{products: ProductI[], pages: number}>{
     const {limit, offset, gender} = options;
     const newSet: number    = limit * offset;
     const url: string = `${this.url}products`;
@@ -31,7 +31,12 @@ export class ProductsService {
         const data = [... new Set([...this.productsData(), ...resp.products])];
         this.productsData.set(data);
       }),
-      map((resp) => resp.products)
+      // tap( resp =>{ console.log(resp); }),
+      map( resp => ({
+       products: resp.products,
+      pages: resp.pages
+      }))
+      // map((resp) => { total: resp.pages, products: resp.products} )
     );
   }
 

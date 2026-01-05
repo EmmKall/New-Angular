@@ -23,6 +23,7 @@ export class GenderPageComponent implements OnInit {
   gender = toSignal(this.activatedRouter.params.pipe(map(params => params['gender'])));
 
   products: ProductI[] = [];
+  totalPages: number = 0;
 
   optionsProducts: optionsProductsI = {
     limit: 10,
@@ -42,8 +43,10 @@ export class GenderPageComponent implements OnInit {
   getProducts(): void {
     this.products = [];
     this.productsService.getProducts(this.optionsProducts).subscribe(resp => {
-      this.products = resp;
-      //this.productsData.update(resp => [...resp, ...resp]);
+      const {pages, products} = resp;
+      this.totalPages = pages;
+      this.products = products;
+      //this.productsData.update(data => [...data, ...products]);
     });
   }
 
