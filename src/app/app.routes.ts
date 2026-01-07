@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { App } from './app';
+import { NoAuthenticatedGuard } from '@auth/guards/not-authenticated.guard';
 
 export const routes: Routes = [
   /* {
@@ -14,8 +15,19 @@ export const routes: Routes = [
     ]
   }, */
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/Auth.routing'),
+    canMatch: [
+      NoAuthenticatedGuard,
+      () => {
+        // console.log('Authenticated');
+        return true;
+      }
+    ]
+  },
+  {
     path: '',
-    loadChildren: () => import('./store-front/store-front.routing')
+    loadChildren: () => import('./store-front/store-front.routing'),
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' },
 ];

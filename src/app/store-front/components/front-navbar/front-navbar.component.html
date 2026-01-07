@@ -25,6 +25,12 @@
     </ul>
   </div>
   <div class="navbar-end">
-    <a class="btn">Button</a>
+    @if(btnText() === 'Logout'){
+      <span class="mx-2 text-primary font-bold">Welcome: {{this.authService.user()?.fullName}}</span>
+    }
+
+    <button (click)="handleBtn()" class="btn btn-secondary">
+      {{ btnText() }}
+    </button>
   </div>
 </div>

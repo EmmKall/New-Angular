@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { routes } from 'src/app/app.routes';
+import { JsonPipe } from '@angular/common';
+import { Component, computed, inject, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { UserI } from '@auth/interfaces/UserResponseI';
+import { AuthService } from '@auth/services/Auth.service';
 
 @Component({
   selector: 'app-front-navbar',
@@ -9,9 +11,13 @@ import { routes } from 'src/app/app.routes';
   imports: [
     RouterLink,
     RouterLinkActive,
+    JsonPipe,
   ]
 })
 export class FrontNavbarComponent implements OnInit {
+
+  router: Router = inject(Router);
+  authService: AuthService = inject(AuthService);
 
   routes = [
     { path: '/gender/men', title: 'Men' },
@@ -19,9 +25,22 @@ export class FrontNavbarComponent implements OnInit {
     { path: '/gender/kids', title: 'Kids' },
   ];
 
+  user: UserI|null = this.authService.user();
+
+  btnText = computed<string>( () =>  this.authService.authStatus() === 'authenticated' ? 'Logout' : 'Login' );
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  handleBtn(): void {
+    if(this.authService.authStatus() === 'authenticated') {
+      this.authService.logout();
+      return;
+    }
+
+    this.router.navigate(['/auth/login']);
+
   }
 
 }

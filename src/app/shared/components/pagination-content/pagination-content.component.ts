@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, EventEmitter, input, linkedSignal, OnInit, output, signal } from '@angular/core';
+import { Component, computed, input, linkedSignal, OnInit, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ import { RouterLink } from '@angular/router';
 })
 export class PaginationContentComponent implements OnInit {
 
-  // updateCurrentPageE : EventEmitter<number> = new EventEmitter<number>();
   updateCurrentPageE = output<number>();
 
   currentPage = input<number>(1);

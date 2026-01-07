@@ -46,7 +46,6 @@ export class HomePageComponent implements OnInit {
   getProducts(): void {
     this.productsData.set([]);
     this.products = [];
-    console.log( (this.optionsProducts.offset + 1) );
     this.productsService.getProducts(this.optionsProducts).subscribe(resp => {
       const {pages, products} = resp;
       this.totalPages = pages;
