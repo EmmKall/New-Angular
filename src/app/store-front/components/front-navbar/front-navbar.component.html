@@ -29,6 +29,7 @@
       <span class="mx-2 text-primary font-bold">Welcome: {{this.authService.user()?.fullName}}</span>
     }
 
+    <button [routerLink]="['/admin/']" class="btn btn-primary mx-2">Dashbard</button>
     <button (click)="handleBtn()" class="btn btn-secondary">
       {{ btnText() }}
     </button>

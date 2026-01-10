@@ -6,6 +6,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { logginhInterceptor } from '@shared/interceptors/loggin.interceptor';
 import { authhInterceptor } from '@auth/interceptors/auth.interceptor';
+import { isAdminGuard } from '@auth/guards/is-admin.guard';
 
 export const appConfig: ApplicationConfig = {
   providers: [

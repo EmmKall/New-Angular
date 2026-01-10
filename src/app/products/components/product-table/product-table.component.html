@@ -1,0 +1,89 @@
+<div class="overflow-x-auto">
+
+  <div class="content-header flex justify-between items-center">
+    <select class="select select-primary" #selectOptionPerPage (change)="updatePerPage(selectOptionPerPage.value)">
+      <option disabled selected>Choose per page</option>
+      @for(option of optionPerPage(); track option){
+        <option [value]="option" [selected]="option === optionsProducts().limit" >{{option}}</option>
+      }
+    </select>
+  </div>
+
+  <app-pagination-content [currentPage]="currentPage()" [totalPage]="pages()" />
+
+  <div class="max-h-[70vh] overflow-y-scroll">
+
+    <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>
+          <label>
+            <input type="checkbox" class="checkbox" />
+          </label>
+        </th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(product of products(); track product.id){
+        <tr>
+          <th>
+            <label>
+              <input type="checkbox" class="checkbox" />
+            </label>
+          </th>
+          <td>
+            <div class="flex items-center gap-3">
+              <div class="avatar">
+                <div class="mask mask-squircle h-12 w-12">
+                  <img [src]="product.images | productImage" [alt]="product.title" />
+                </div>
+              </div>
+              <div>
+                <div class="font-bold">
+                  <a [routerLink]="['/admin/product/', product.id]" class="link link-hover">
+                    {{product.title}}
+                  </a>
+                </div>
+                <div class="text-sm opacity-50">{{product.sizes.join(', ')}}</div>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="badge badge-sm badge-neutral">{{product.price | currency}}</span>
+          </td>
+          <td>
+            <span
+              class="badge badge-sm"
+              [ngClass]="{ 'badge-error' : product.stock <= 10, 'badge-warning' : product.stock <= 15, 'badge-success' : product.stock > 15}"
+            >{{product.stock }}</span>
+          </td>
+          <th class="flex flex-col md:flex-row gap-2">
+            <button class="btn btn-primary" [routerLink]="['/admin/product/', product.id]">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="44" stroke-dashoffset="44" d="M7 17v-4l10 -10l4 4l-10 10h-4"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.3s" dur="0.5s" to="0"/></path><path stroke-dasharray="20" d="M3 21h18"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="20;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M14 6l4 4"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" to="0"/></path></g></svg>
+            </button>
+          </th>
+        </tr>
+      }
+    </tbody>
+    <!-- foot -->
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+
+  </div>
+
+
+
+</div>

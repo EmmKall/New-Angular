@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { App } from './app';
 import { NoAuthenticatedGuard } from '@auth/guards/not-authenticated.guard';
+import { isAdminGuard } from '@auth/guards/is-admin.guard';
 
 export const routes: Routes = [
   /* {
@@ -23,6 +24,13 @@ export const routes: Routes = [
         // console.log('Authenticated');
         return true;
       }
+    ]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin-dashboard/admin-dashboard.routing'),
+    canMatch: [
+      isAdminGuard,
     ]
   },
   {

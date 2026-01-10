@@ -19,6 +19,7 @@ export class ProductsService {
   private url: string = `${environment.apiTeloShop}`;
 
   productsData  = signal<ProductI[]>([]);
+  productsAdmin  = signal<ProductI[]>([]);
 
   constructor() { }
 
@@ -40,7 +41,11 @@ export class ProductsService {
     );
   }
 
-  searchProductById(id: string): ProductI | null {
+  searchProductById(id: string, isAdmin: boolean = false): ProductI | null {
+    if(!isAdmin) {
+      const product = this.productsAdmin().find( product => product.id === id);
+      return product ? product : null;
+    }
     const product = this.productsData().find( product => product.id === id);
     return product ? product : null;
   }

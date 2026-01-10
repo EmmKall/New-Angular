@@ -1,0 +1,51 @@
+<div class="form">
+
+        <div class="p-5 btns flex justify-end items-center gap-2">
+          <button class="btn btn-primary" (click)="toggleEdit()">{{ isEdit() ? 'Cancel' : 'Edit' }}</button>
+          @if(isEdit()){
+            <button class="btn btn-secondary" (click)="updateProduct()">Save</button>
+          }
+        </div>
+        {{ isEdit() }}
+        <form [formGroup]="productForm">
+
+          <fieldset class="fieldset mx-auto bg-base-200 border-base-300 rounded-box w-max md:w-2/3 border p-4">
+          <legend class="fieldset-legend">Product details</legend>
+
+          <label class="label w-full">Title</label>
+          @if(isEdit()){
+            <input type="text" class="input w-full" placeholder="Title" formControlName="title" [disabled]="!isEdit()" />
+          }
+          @else {
+            <p class="input w-full">{{product().title}}</p>
+          }
+
+
+          <label class="label w-full">Description</label>
+          @if(isEdit()){
+            <input type="text" class="input w-full" placeholder="Description" formControlName="description" [disabled]="!isEdit()" />
+          }
+          @else {
+            <p class="input w-full">{{product().description}}</p>
+          }
+
+          <label class="label w-full">Price</label>
+          @if(isEdit()){
+            <input type="text" class="input w-full" placeholder="Price" formControlName="price" [disabled]="!isEdit()" />
+          }
+          @else {
+            <p class="input w-full">{{product().price}}</p>
+          }
+
+          <label class="label w-full">Stock</label>
+          @if(isEdit()){
+            <input type="text" class="input w-full" placeholder="Stock" formControlName="stock" [disabled]="!isEdit()" />
+          }
+          @else {
+            <p class="input w-full">{{product().stock}}</p>
+          }
+
+        </fieldset>
+
+        </form>
+      </div>

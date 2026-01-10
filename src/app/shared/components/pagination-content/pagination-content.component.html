@@ -4,14 +4,14 @@
     <button
         [disabled]="this.activePage() === 1"
         (click)="nextBeforePage(false)"
-        class="join-item btn hover:btn-primary btn-xl"
+        class="join-item btn hover:btn-primary"
         >
       {{'<'}}
     </button>
 
     @for(page of pages(); track page){
       <button
-        class="join-item btn hover:btn-primary btn-xl"
+        class="join-item btn hover:btn-primary"
         [class.btn-primary]="page === activePage()"
         [routerLink]="[]"
         [queryParams]="{page: page}"
@@ -24,7 +24,7 @@
     <button
         [disabled]="this.activePage() === (this.totalPage() )"
         (click)="nextBeforePage(true)"
-        class="join-item btn hover:btn-primary btn-xl"
+        class="join-item btn hover:btn-primary"
         >
       {{'>'}}
     </button>

@@ -1,0 +1,41 @@
+<div class="">
+
+  @if(isLoading){
+    <div class="flex w-50 flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <div class="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+        <div class="flex flex-col gap-4">
+          <div class="skeleton h-4 w-20"></div>
+          <div class="skeleton h-4 w-28"></div>
+        </div>
+      </div>
+      <div class="skeleton h-32 w-full"></div>
+    </div>
+  }
+  @else {
+    <div class="product">
+
+      <figure class="diff aspect-video" tabindex="0">
+        <div class="diff-item-1" role="img" tabindex="0">
+          <img [alt]="product?.title" [src]="product?.images! | productImage" /> />
+        </div>
+        <div class="diff-item-2" role="img">
+          <img
+            [alt]="product?.title"
+            [src]="product?.images! | productImage" />
+        </div>
+        <div class="diff-resizer"></div>
+      </figure>
+
+      <app-product-form
+        (updateProductE)="onSave($event)"
+        (updateIsEditE)="toggleEdit()"
+        [product]="product!"
+        [isEdit]="isEdit"
+      ></app-product-form>
+
+    </div>
+  }
+
+
+</div>

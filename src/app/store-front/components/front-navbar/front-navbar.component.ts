@@ -1,7 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { UserI } from '@auth/interfaces/UserResponseI';
+import { Role, UserI } from '@auth/interfaces/UserResponseI';
 import { AuthService } from '@auth/services/Auth.service';
 
 @Component({
@@ -28,6 +28,7 @@ export class FrontNavbarComponent implements OnInit {
   user: UserI|null = this.authService.user();
 
   btnText = computed<string>( () =>  this.authService.authStatus() === 'authenticated' ? 'Logout' : 'Login' );
+  isAdmin = computed<boolean>( () => this.user?.roles.includes(Role.Admin)|| false );
 
   constructor() { }
 
