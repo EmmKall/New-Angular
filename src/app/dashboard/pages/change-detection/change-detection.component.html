@@ -1,0 +1,19 @@
+<div class="w-full p-2">
+
+  <app-title
+    title="Change dectetion"
+  />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+      <div class="bg-white rounded shadow p-10">
+        <pre>{{frameworksAsSignal() | json}}</pre>
+      </div>
+
+      <div class="bg-white rounded shadow p-10">
+        <pre>{{frameworksAsProperty | json}}</pre>
+      </div>
+
+    </div>
+
+  </div>

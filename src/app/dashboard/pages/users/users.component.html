@@ -1,0 +1,16 @@
+<div class="">
+
+  <app-title [title]="'Users'"></app-title>
+
+  <ul>
+    @for( user of users(); track user.id){
+      <li class="flex items-center my-2 cursor-pointer" [routerLink]="['/dashboard/user', user.id]">
+        <img [srcset]="user.avatar" [alt]="user.first_name" class="rounded w-14">
+        <span>{{user.first_name}}</span>
+        <span>{{user.last_name}}</span>
+        <span>{{user.email}}</span>
+      </li>
+    }
+  </ul>
+
+</div>

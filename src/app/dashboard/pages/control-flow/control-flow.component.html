@@ -1,0 +1,53 @@
+<div class="w-full p-2">
+
+  <app-title
+    title="Flow control"
+  />
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">If: {{showContent()}}</h2>
+    <button class="btn btn-primary" (click)="toggleContent()">Change Sohw</button>
+    @if(showContent()){
+      <p>Hello world</p>
+    }
+    @else {
+     <p>**** ****</p>
+    }
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">Switch: {{grade()}}</h2>
+    <p class="text-center font-bold p-2">
+      @switch(grade()){
+        @case('A') { <span>Excellent</span> }
+        @case('B') { <span>Nice</span> }
+        @case('C') { <span>Average</span> }
+        @case('D') { <span>Good</span> }
+        @case('E') { <span>Poor</span> }
+        @case('F') { <span>You can do it</span> }
+        @default { <span>Fail</span> }
+      }
+    </p>
+    <div class="btns flex flex-row gap-2">
+      @for(grade of grades; track grade ) {
+        <button class="btn btn-primary" (click)="setGrade(grade)">{{grade}}</button>
+      }
+    </div>
+  </div>
+
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">for: {{frameworks.join(', ')}}</h2>
+    @for(framework of frameworks; track framework; let i = $index) {
+    <p class="text-center font-bold p-2">[{{i}}] {{framework}}</p>
+    }
+    @empty {
+      <p class="text-center font-bold p-2">Empty</p>
+    }
+  </div>
+
+</div>
+
+</div>
+

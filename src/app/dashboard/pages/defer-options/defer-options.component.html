@@ -1,0 +1,103 @@
+<div class="">
+
+  <section>
+    <app-title [title]="'Defer options'"></app-title>
+
+    <section>
+      <h1 class="text-xl">Interactions</h1>
+    </section>
+    @defer(on interaction) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Content 1</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Loading...</div>
+    }
+  </section>
+
+  <section>
+
+    <section class="my-2">
+      <h1 class="text-xl">Interactions</h1>
+      <button class="btn btn-primary" #btnInteraction>Click me</button>
+    </section>
+    @defer(on interaction(btnInteraction) ) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Content 1</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Click BTN Loading...</div>
+    }
+  </section>
+
+  <section>
+
+    <section class="my-2">
+      <h1 class="text-xl">Interactions</h1>
+    </section>
+    @defer(on hover ) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Content 1</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Hover Loading...</div>
+    }
+  </section>
+
+  <section>
+
+    <section class="my-2">
+      <h1 class="text-xl">Interactions</h1>
+    </section>
+    @defer(on hover(btnInteraction) ) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Content 1</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Hovwer btn Loading...</div>
+    }
+  </section>
+
+  <section>
+
+    <section class="my-2">
+      <h1 class="text-xl">Interactions</h1>
+    </section>
+    @defer(on immediate ) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Content 1</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Immediate Loading...</div>
+    }
+  </section>
+
+  <section>
+
+    <section class="my-2">
+      <h1 class="text-xl">Interactions</h1>
+    </section>
+    @defer(on timer(2000) ) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Content 1</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Timer Loading...</div>
+    }
+  </section>
+
+  <section>
+
+    <section class="my-2">
+      <h1 class="text-xl">Interactions</h1>
+    </section>
+    @defer(on hover; prefetch on idle ) {
+    <app-heavy-loaders-fast [cssClass]="'bg-blue-400 h-20'">
+      <span select="selector">Hover, idle</span>
+    </app-heavy-loaders-fast>
+    }@placeholder {
+    <div class="w-full h-20 bg-purple-300">Loading...</div>
+    }
+  </section>
+
+</div>

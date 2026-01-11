@@ -1,0 +1,29 @@
+<div class="">
+
+  <app-title [title]="'Defer views'"></app-title>
+
+  @defer() {
+    <app-heavy-loadres-slow [bgColor]="'bg-blue-400'"></app-heavy-loadres-slow>
+  } @placeholder {
+    <p class="h-[60rem] w-Full bg-gratiant-to-r from-gray-200 to-gray-00 animate-pulse">Loading...</p>
+  }
+
+  @defer(on idle) {
+    <app-heavy-loadres-slow [bgColor]="'bg-blue-400'"></app-heavy-loadres-slow>
+  } @placeholder {
+    <p class="h-[60rem] w-Full bg-gratiant-to-r from-gray-200 to-gray-00 animate-pulse">Loading...</p>
+  }
+
+  @defer(on viewport) {
+    <app-heavy-loadres-slow [bgColor]="'bg-blue-400'"></app-heavy-loadres-slow>
+  } @placeholder {
+    <p class="h-[60rem] w-Full bg-gratiant-to-r from-gray-200 to-gray-00 animate-pulse">Loading...</p>
+  }
+
+  @defer() {
+    <app-heavy-loadres-slow [bgColor]="'bg-blue-400'"></app-heavy-loadres-slow>
+  } @placeholder {
+    <p class="h-[60rem] w-Full bg-gratiant-to-r from-gray-200 to-gray-00 animate-pulse">Loading...</p>
+  }
+
+</div>
